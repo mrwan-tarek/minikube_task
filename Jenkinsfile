@@ -28,7 +28,7 @@ pipeline {
             steps {
                 script {
                     echo ' deploying the application ....'
-                    sh " ansible-playbook playbook.yml "                        
+                    sh " ansible-playbook -i hosts  playbook.yml "                        
                     
                 }
             }

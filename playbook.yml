@@ -1,7 +1,6 @@
 ---
 - name: Creating and updating nginx-deployment
   hosts: local
-  become: yes
 
   tasks:
   - name: start minikube

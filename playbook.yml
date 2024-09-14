@@ -1,0 +1,14 @@
+---
+- name: Creating and updating nginx-deployment
+  hosts: local
+  become: yes
+
+  tasks:
+  - name: start minikube
+    ansible.builtin.command: minikube start
+
+  - name: start or update deployment
+    ansible.builtin.command: minikube kubectl -- apply -f nginx-deployment.yaml
+
+  - name: start service
+    ansible.builtin.command: minikube service my-service

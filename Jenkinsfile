@@ -24,12 +24,11 @@ pipeline {
                 }
             }
         }
-        stage(' Deploy the application on a container ') {
+        stage(' start the minikube deployment ') {
             steps {
                 script {
                     echo ' deploying the application ....'
-                    withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'PASS', usernameVariable: 'USER')]){
-                        sh " docker run -d -p 8090:80 $USER/minikube-task "                        
+                    sh " ansible-playbook playbook.yml "                        
                     }
                 }
             }

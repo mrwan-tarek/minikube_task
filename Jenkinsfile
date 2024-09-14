@@ -29,7 +29,7 @@ pipeline {
                 script {
                     echo ' deploying the application ....'
                     withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'PASS', usernameVariable: 'USER')]){
-                        sh " docker run -d -p 8090:8080 $USER/minikube-task "                        
+                        sh " docker run -d -p 8090:80 $USER/minikube-task "                        
                     }
                 }
             }

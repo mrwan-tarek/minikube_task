@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: Fire00m/minikube-task
+        image: fire00m/minikube-task
         ports:
         - containerPort: 80

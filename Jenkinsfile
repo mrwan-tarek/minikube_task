@@ -29,7 +29,7 @@ pipeline {
                 script {
                     echo ' deploying the application ....'
                     sh " ansible-playbook playbook.yml "                        
-                    }
+                    
                 }
             }
         }

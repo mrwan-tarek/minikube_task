@@ -32,6 +32,7 @@ jobs:
       - run:
           name: "Push Docker Image to Docker Hub"
           command: |
+            docker images
             echo $DOCKER_HUB_PASS | docker login -u $DOCKER_HUB_USER --password-stdin
             docker tag minikube-task-2 $DOCKER_HUB_USER/minikube-task-2
             docker push $DOCKER_HUB_USER/minikube-task-2

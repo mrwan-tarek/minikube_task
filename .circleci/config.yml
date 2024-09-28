@@ -40,7 +40,7 @@ jobs:
   
   start-the-minikube-deployment:
     docker:
-      - image: rkumbhar/minikube  # Use a Python image to easily install Ansible
+      - image: rkumbhar/minikube:ht-getkey-1.0  # Use a Python image to easily install Ansible
     steps:
       - checkout
       - setup_remote_docker:

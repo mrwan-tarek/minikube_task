@@ -40,25 +40,17 @@ jobs:
   
   start-the-minikube-deployment:
     docker:
-      - image: cimg/python:3.8  # Use a Python image to easily install Ansible
+      - image: gcr.io/k8s-minikube/minikube:latest  # Use a Python image to easily install Ansible
     steps:
       - checkout
       - setup_remote_docker:
           version: 20.10.7  # Specify your Docker version
           docker_layer_caching: true  # Optional for caching
       - run:
-          name: "Install Ansible"
-          command: "pip install ansible"
-      - run:
-          name: "Install Minikube and Dependencies"
-          command: |
-            curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
-            sudo install minikube /usr/local/bin/
-            minikube start --driver=docker  # Start Minikube with Docker driver
-      - run:
           name: "Start the Minikube Deployment"
-          command: "ansible-playbook -i hosts playbook.yml"
-
+          command: "minikube start --driver=docker"
+          command:  "minikube kubectl -- apply -f nginx-deployment.yaml"
+          command:  "minikube service my-service"
 workflows:
   say-hello-workflow:
     jobs:

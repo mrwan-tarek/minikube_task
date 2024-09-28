@@ -22,7 +22,7 @@ jobs:
           name: "Say hello"
           command: "echo Hello, World!"
 
-  Build Docker Image:
+  Build-Docker-Image:
     docker:
       - image: cimg/base:current
     steps:
@@ -31,7 +31,7 @@ jobs:
           name: "Build Docker Image"
           command: "docker build -t minikube-task-2 ."
   
-  Push Docker Image to Docker Hub:
+  Push-Docker-Image-to-Docker-Hub:
     docker:
       - image: cimg/base:current
     steps:
@@ -43,7 +43,7 @@ jobs:
             sh "docker tag minikube-task-2 $DOCKER_HUB_USER/minikube-task-2"
             sh "docker push $DOCKER_HUB_USER/minikube-task-2"
   
-  start the minikube deployment:
+  start-the-minikube-deployment:
     docker:
       - image: cimg/base:current
     steps:
@@ -59,12 +59,12 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs    :
       - say-hello
-      - Build Docker Image
+      - Build-Docker-Image
         requires:
           - say-hello
-      - Push Docker Image to Docker Hub
+      - Push-Docker-Image-to-Docker-Hub
         requires:
-          - Build Docker Image
-      - start the minikube deployment
+          - Build-Docker-Image
+      - start-the-minikube-deployment
         requires:
-          - Push Docker Image to Docker Hub
+          - Push-Docker-Image-to-Docker-Hub

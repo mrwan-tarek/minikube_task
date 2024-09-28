@@ -59,12 +59,12 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs    :
       - say-hello
-      - Build-Docker-Image
+      - Build-Docker-Image:
         requires:
           - say-hello
-      - Push-Docker-Image-to-Docker-Hub
+      - Push-Docker-Image-to-Docker-Hub:
         requires:
           - Build-Docker-Image
-      - start-the-minikube-deployment
+      - start-the-minikube-deployment:
         requires:
           - Push-Docker-Image-to-Docker-Hub

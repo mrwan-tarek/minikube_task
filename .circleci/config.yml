@@ -40,7 +40,7 @@ jobs:
   
   start-the-minikube-deployment:
     docker:
-      - image: gcr.io/k8s-minikube/minikube:latest  # Use a Python image to easily install Ansible
+      - image: rkumbhar/minikube  # Use a Python image to easily install Ansible
     steps:
       - checkout
       - setup_remote_docker:

@@ -47,6 +47,12 @@ jobs:
           name: "Install Ansible"
           command: "pip install ansible"
       - run:
+          name: "Install Minikube and Dependencies"
+          command: |
+            curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+            sudo install minikube /usr/local/bin/
+            minikube start --driver=docker  # Start Minikube with Docker driver
+      - run:
           name: "Start the Minikube Deployment"
           command: "ansible-playbook -i hosts playbook.yml"
 

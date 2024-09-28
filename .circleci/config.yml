@@ -40,12 +40,19 @@ jobs:
   
   start-the-minikube-deployment:
     docker:
-      - image: rkumbhar/minikube:ht-getkey-1.0  # Use a Python image to easily install Ansible
+      - image: ubuntu-2004:202010-01  # Use a Python image to easily install Ansible
     steps:
       - checkout
       - setup_remote_docker:
           version: 20.10.7  # Specify your Docker version
           docker_layer_caching: true  # Optional for caching
+      - run:
+          name: "install Minikube Deployment"
+          command: |
+            curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
+            sudo dpkg -i minikube_latest_amd64.deb
+            minikube start --vm-driver=docker --kubernetes-version=v1.19.0
+
       - run:
           name: "Start the Minikube Deployment"
           command: |

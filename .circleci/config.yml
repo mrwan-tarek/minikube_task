@@ -48,9 +48,10 @@ jobs:
           docker_layer_caching: true  # Optional for caching
       - run:
           name: "Start the Minikube Deployment"
-          command: "minikube start --driver=docker"
-          command:  "minikube kubectl -- apply -f nginx-deployment.yaml"
-          command:  "minikube service my-service"
+          command: |
+            minikube start --driver=docker
+            minikube kubectl -- apply -f nginx-deployment.yaml
+            minikube service my-service
 workflows:
   say-hello-workflow:
     jobs:

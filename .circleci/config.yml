@@ -40,11 +40,14 @@ jobs:
   
   start-the-minikube-deployment:
     docker:
-      - image: ansible/ansible:latest
+      - image: cimg/python:3.8  # Use a Python image to easily install Ansible
     steps:
       - checkout
       - run:
-          name: "start the minikube deployment"
+          name: "Install Ansible"
+          command: "pip install ansible"
+      - run:
+          name: "Start the Minikube Deployment"
           command: "ansible-playbook -i hosts playbook.yml"
 
 workflows:
